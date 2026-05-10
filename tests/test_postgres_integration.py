@@ -2,7 +2,7 @@ import os, sys
 import pytest
 from app import create_app
 from extensions import db
-from models import ThoughtModel
+from models import ThoughModel
 
 sys.path.insert(0, os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..')
@@ -23,16 +23,16 @@ def app_context():
 
 
 def test_db_integration_postgres(app_context):
-    thought = ThoughtModel(username="postgres_user", text="Dato reale nel DB")
+    thought = ThoughModel(username="postgres_user", text="Dato reale nel DB")
     db.session.add(thought)
     db.session.commit()
 
-    result = ThoughtModel.query.filter_by(username="postgres_user").first()
+    result = ThoughModel.query.filter_by(username="postgres_user").first()
     assert result is not None
     assert result.text == "Dato reale nel DB"
 
     db.session.delete(result)
     db.session.commit()
 
-    result2 = ThoughtModel.query.filter_by(username="postgres_user").first()
+    result2 = ThoughModel.query.filter_by(username="postgres_user").first()
     assert result2 is None
