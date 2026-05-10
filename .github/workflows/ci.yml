@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: docker-repository
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
